@@ -1,41 +1,69 @@
+import axios from "axios";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const SignUp = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        { name, email, password }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <section className="py-12 px-3 sm:px-8 max-h-screen">
+    <section className="py-4 sm:py-8 px-3 sm:px-8 max-h-screen">
       <div className="bg-slate-50 rounded-lg max-w-md mx-auto py-5 px-6">
         <div>
           <h2 className="text-center text-4xl font-extralight text-slate-800 py-4">
             Sign Up
           </h2>
         </div>
-        <div className="mt-5">
+        <form onSubmit={handleSubmit} className="mt-2">
           <div className="flex flex-col space-y-3 mb-2">
-            <label htmlFor="">Name</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               name=""
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="p-2 border-slate-400 border rounded-lg focus:outline-none"
-              id=""
+              id="name"
+              placeholder="Name"
             />
           </div>
           <div className="flex flex-col space-y-3 mb-2">
-            <label htmlFor="">Email</label>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               name=""
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="p-2 border-slate-400 border rounded-lg focus:outline-none"
-              id=""
+              id="email"
+              placeholder="Email"
             />
           </div>
           <div className="flex flex-col space-y-3 mb-2">
-            <label htmlFor="">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password
               "
               name=""
-              id=""
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="p-2 border-slate-400 border  rounded-lg focus:outline-none"
+              placeholder="Password"
             />
           </div>
           <button className="bg-slate-800 text-white py-3 px-5 rounded-lg mt-3">
@@ -52,7 +80,7 @@ const SignUp = () => {
               </NavLink>
             </span>
           </div>
-        </div>
+        </form>
       </div>
     </section>
   );

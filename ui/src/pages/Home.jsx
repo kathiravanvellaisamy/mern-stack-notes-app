@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Home = () => {
   return (
-    <section className="py-36 max-h-screen">
+    <section className="py-24 sm:py-36 max-h-screen">
       <div className="flex flex-col items-center justify-items-center py-5 px-8 text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-800 ">
           📝 Jot It. Sort It. Never Forget It.
